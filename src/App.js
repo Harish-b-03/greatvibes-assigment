@@ -8,11 +8,12 @@ import JobCard from "./components/JobCard";
 import { postjob } from "./api/postJob";
 
 function App() {
-  const [stepNumber, setStepNumber] = useState(0)
+  const [stepNumber, setStepNumber] = useState(1)
   const [userData, setUserData] = useState({})
   const [jobList, setJobList] = useState([])
   const [loading, setLoading] = useState(false)
-  
+  const [showFormContainer, setShowFormContainer] = useState(false)
+
   const [data, setData] = useState({
     title: "",
     company: "",
@@ -34,7 +35,6 @@ function App() {
 
     axios.get(`${BASE_URL}/jobs`).then((res) => {
       setJobList(res.data);
-      console.log(res);
       setLoading(false)
     })
 
@@ -58,7 +58,8 @@ function App() {
       }
     }
     setLoading(false);
-    setStepNumber(0);
+    setStepNumber(1);
+    setShowFormContainer(false);
   }
 
   return (
@@ -66,7 +67,7 @@ function App() {
       <Topbar/>
       <main className="w-screen h-fit min-h-screen pt-[60px] md:px-20 bg-gray-100">
         <div className="mt-5">
-          <button onClick={()=>{setStepNumber(1)}} className="py-2 px-3 bg-primary text-white text-sm font-semibold flex justify-center items-center rounded-md cursor-pointer hover:bg-blue-600">
+          <button onClick={()=>{setStepNumber(1); setShowFormContainer(true)}} className="py-2 px-3 bg-primary text-white text-sm font-semibold flex justify-center items-center rounded-md cursor-pointer hover:bg-blue-600">
             Create Job
           </button>
         </div>
@@ -80,15 +81,15 @@ function App() {
           }
         </div>
       </main>
-      { (stepNumber > 0) &&
+      { (showFormContainer && stepNumber > 0) &&
         <div className="fixed top-[0px] w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto">
           {
             (stepNumber === 1) &&
-            <Form1 setStepNumber={setStepNumber} data={data} setData={setData}/>
+              <Form1 setStepNumber={setStepNumber} data={data} setData={setData} setShowFormContainer={setShowFormContainer}/>
           }
           {
             (stepNumber === 2) &&
-            <Form2 data2={data2} setData2={setData2} submitForm={submitForm}/>
+              <Form2 data2={data2} setData2={setData2} submitForm={submitForm}  setShowFormContainer={setShowFormContainer}/>
           }
         </div>
       }

@@ -2,6 +2,7 @@ import React from 'react'
 
 const RangedInputField = ({
         title, 
+        value, 
         placeholder, 
         setChangeMin,
         setChangeMax,
@@ -17,6 +18,7 @@ const RangedInputField = ({
                 <div className="w-[calc(50%-12px)]">
                     <input 
                         type={type}
+                        value={value.min}
                         className="mt-1 w-full h-9 px-3 py-2 font-normal text-sm outline-1 border rounded-md placeholder:text-[#7A7A7A]"
                         placeholder={placeholder[0]} 
                         onChange={setChangeMin}
@@ -25,6 +27,7 @@ const RangedInputField = ({
                 <div className="w-[calc(50%-12px)]">
                     <input
                         type={type}
+                        value={value.max}
                         className="mt-1 w-full h-9 px-3 py-2 font-normal text-sm outline-1 border rounded-md placeholder:text-[#7A7A7A]"
                         placeholder={placeholder[1]} 
                         onChange={setChangeMax}

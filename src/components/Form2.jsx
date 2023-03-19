@@ -1,7 +1,7 @@
 import InputField from "./InputField"
 import RangedInputField from "./RangedInputField"
 
-const Form2 = ({data2, setData2, submitForm}) => {
+const Form2 = ({data2, setData2, submitForm, setShowFormContainer}) => {
   
   return (
     <div className="relative p-8 w-[577px] h-[564px] bg-[#FFFFFF] border border-solid border-card rounded-lg">
@@ -14,9 +14,27 @@ const Form2 = ({data2, setData2, submitForm}) => {
             </div>
         </div>
         <form>
-            <RangedInputField title={"Experience"} placeholder={["Minimum","Maximum"]} setChangeMin={(e)=>{setData2(prev=>({...prev, experience:{...prev.experience, min:parseInt(e.target.value)}}))}} setChangeMax={(e)=>{setData2(prev=>({...prev, experience:{...prev.experience, max:parseInt(e.target.value)}}))}}/>
-            <RangedInputField title={"Salary"} placeholder={["Minimum","Maximum"]} setChangeMin={(e)=>{setData2(prev=>({...prev, salary:{...prev.salary, min:parseInt(e.target.value)}}))}} setChangeMax={(e)=>{setData2(prev=>({...prev, salary:{...prev.salary, max:parseInt(e.target.value)}}))}}/>
-            <InputField title={"Total employee"} type={"number"} placeholder={"ex. 100"} setChange={(e)=>{setData2(prev=>({...prev, totalEmployees:parseInt(e.target.value)}))}}/>
+            <RangedInputField 
+                title={"Experience"} 
+                value={data2.experience}
+                placeholder={["Minimum","Maximum"]} 
+                setChangeMin={(e)=>{setData2(prev=>({...prev, experience:{...prev.experience, min:parseInt(e.target.value)}}))}} 
+                setChangeMax={(e)=>{setData2(prev=>({...prev, experience:{...prev.experience, max:parseInt(e.target.value)}}))}}
+            />
+            <RangedInputField 
+                title={"Salary"} 
+                value={data2.salary}
+                placeholder={["Minimum","Maximum"]} 
+                setChangeMin={(e)=>{setData2(prev=>({...prev, salary:{...prev.salary, min:parseInt(e.target.value)}}))}} 
+                setChangeMax={(e)=>{setData2(prev=>({...prev, salary:{...prev.salary, max:parseInt(e.target.value)}}))}}
+            />
+            <InputField 
+                title={"Total employee"} 
+                value={data2.totalEmployees}
+                type={"number"} 
+                placeholder={"ex. 100"} 
+                setChange={(e)=>{setData2(prev=>({...prev, totalEmployees:parseInt(e.target.value)}))}}
+            />
             <div className="mt-6">
                 <div className="text-sm font-medium text-dark">
                     Apply type
@@ -51,6 +69,9 @@ const Form2 = ({data2, setData2, submitForm}) => {
                 type={'submit'}
                 value="Save"
                 className="px-4 py-2 float-right font-medium rounded-md bg-[#1597E4] text-white hover:bg-blue-600 cursor-pointer"/>
+        </div>
+        <div onClick={()=>setShowFormContainer(false)} className="absolute -top-1 md:top-0 right-0 w-10 h-10 translate-x-0 -translate-y-full md:translate-x-1/2 md:-translate-y-1/2 flex justify-center items-center text-white bg-[rgba(0,0,0,0.6)] rounded-full cursor-pointer">
+            x
         </div>
     </div>
   )
