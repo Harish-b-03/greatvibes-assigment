@@ -1,7 +1,7 @@
 import InputField from "./InputField"
 import RangedInputField from "./RangedInputField"
 
-const Form2 = ({data2, setData2}) => {
+const Form2 = ({data2, setData2, submitForm}) => {
   
   return (
     <div className="relative p-8 w-[577px] h-[564px] bg-[#FFFFFF] border border-solid border-card rounded-lg">
@@ -47,6 +47,7 @@ const Form2 = ({data2, setData2}) => {
         </form>
         <div className="w-full absolute bottom-8 right-8">
             <input 
+                onClick={submitForm}
                 type={'submit'}
                 value="Save"
                 className="px-4 py-2 float-right font-medium rounded-md bg-[#1597E4] text-white hover:bg-blue-600 cursor-pointer"/>

@@ -15,7 +15,7 @@ const JobCard = ({
         <div className="w-12 h-12 mr-2 overflow-hidden rounded-[5px]">
             <img
                 src="/images/JobCardImage.png"
-                alt="Job Image"
+                alt="Company Logo"
                 className="object-cover"
             />
         </div>
@@ -39,7 +39,7 @@ const JobCard = ({
                     {`Experience (${experience.min} - ${experience.max} years)`}
                 </div>
                 <div className="mb-2">
-                    INR &#8377; {salary.min} - {salary.max} / Month
+                    INR (&#8377;) {salary.min} - {salary.max} / Month
                 </div>
                 <div className="">
                     {
