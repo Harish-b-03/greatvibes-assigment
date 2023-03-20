@@ -75,14 +75,14 @@ function App() {
           {
             jobList.map((job, index)=>{
               return(
-                <JobCard key={index} {...job} setJobList={setJobList} setLoading={setLoading}/>
+                <JobCard key={index} {...job} setJobList={setJobList} setLoading={setLoading} setShowFormContainer={setShowFormContainer}/>
               )
             })
           }
         </div>
       </main>
       { (showFormContainer && stepNumber > 0) &&
-        <div className="fixed top-[0px] w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto">
+        <div className="fixed top-[0px] w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto z-50">
           {
             (stepNumber === 1) &&
               <Form1 setStepNumber={setStepNumber} data={data} setData={setData} setShowFormContainer={setShowFormContainer}/>
