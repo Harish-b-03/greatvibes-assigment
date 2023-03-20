@@ -1,7 +1,16 @@
 import { useState } from "react"
 import InputField from "./InputField"
 
-const Form1 = ({setStepNumber, data, setData, setShowFormContainer}) => {
+const Form1 = ({
+    setStepNumber, 
+    data, 
+    setData, 
+    setShowFormContainer,
+    width=577,
+    height=564,
+    backgroundColor='#FFFFFF',
+    borderColor="#E6E6E6",
+}) => {
   
   const [error, setError] = useState({ 
     title: {valid: null, message: null}, 
@@ -44,7 +53,7 @@ const Form1 = ({setStepNumber, data, setData, setShowFormContainer}) => {
   }
 
   return (
-    <div className="relative p-8 w-[577px] h-[564px] bg-[#FFFFFF] border border-solid border-card rounded-lg">
+    <div className={`relative p-8 w-[${width}px] h-[${height}px] bg-[${backgroundColor}] border border-solid border-[${borderColor}] rounded-lg`}>
         <div className="w-full flex justify-between items-center">
             <div className="text-xl">
                 Create a job
@@ -61,6 +70,7 @@ const Form1 = ({setStepNumber, data, setData, setShowFormContainer}) => {
                 setChange={(e)=>{setData(prev=>({...prev, title:e.target.value}))}} 
                 required={true} 
                 error={error.title}
+                titleWeight='bold'
             />
             <InputField 
                 title={"Company name"} 

@@ -1,10 +1,19 @@
 import InputField from "./InputField"
 import RangedInputField from "./RangedInputField"
 
-const Form2 = ({data2, setData2, submitForm, setShowFormContainer}) => {
+const Form2 = ({
+    data2, 
+    setData2, 
+    submitForm, 
+    setShowFormContainer,
+    width=577,
+    height=564,
+    backgroundColor='#FFFFFF',
+    borderColor="#E6E6E6",
+}) => {
   
   return (
-    <div className="relative p-8 w-[577px] h-[564px] bg-[#FFFFFF] border border-solid border-card rounded-lg">
+    <div className={`relative p-8 w-[${width}px] h-[${height}px] bg-[${backgroundColor}] border border-solid border-[${borderColor}] rounded-lg`}>
         <div className="w-full flex justify-between items-center">
             <div className="text-xl">
                 Create a job

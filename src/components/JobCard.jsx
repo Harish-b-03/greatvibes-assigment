@@ -16,6 +16,10 @@ const JobCard = ({
     setJobList,
     setLoading,
     jobList,
+    width=830,
+    height=320,
+    backgroundColor='#FFFFFF',
+    borderColor="#DADEDF",
 }) => {
 
   const [editMode, setEditMode] = useState(false)
@@ -41,7 +45,7 @@ const JobCard = ({
   }
 
   return (
-    <div key={id} className="relative w-[830px] h-[320px] my-3 py-4 px-6 flex bg-white border border-solid border-[#DADEDF] box-border rounded-[10px]">
+    <div key={id} className={`relative w-[${width}px] h-[${height}px] my-3 py-4 px-6 flex bg-[${backgroundColor}] border border-solid border-[${borderColor}] box-border rounded-[10px]`}>
         <div className="w-12 h-12 mr-2 overflow-hidden rounded-[5px]">
             <img
                 src="/images/JobCardImage.png"
