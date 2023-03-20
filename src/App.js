@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Form1 from "./components/Form1";
 import Form2 from "./components/Form2";
-import Topbar from "./components/Topbar";
 import axios from 'axios';
 import {BASE_URL} from "./constants/constants"
 import JobCard from "./components/JobCard";
 import { postjob } from "./api/postJob";
+import Layout from "./containers/Layout";
 
 function App() {
   const [stepNumber, setStepNumber] = useState(1)
@@ -63,8 +63,7 @@ function App() {
   }  
 
   return (
-    <div className="w-screen h-screen overflow-x-hidden">
-      <Topbar/>
+    <Layout>
       <main className="w-screen h-fit min-h-screen pt-[60px] md:px-20 bg-gray-100">
         <div className="mt-5 px-3 md:px-0">
           <button onClick={()=>{setStepNumber(1); setShowFormContainer(true)}} className="py-2 px-3 bg-primary text-white text-sm font-semibold flex justify-center items-center rounded-md cursor-pointer hover:bg-blue-600">
@@ -108,7 +107,7 @@ function App() {
           </span>
         </div>
       }
-    </div>
+    </Layout>
   );
 }
 
