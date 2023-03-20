@@ -71,7 +71,7 @@ function App() {
             Create Job
           </button>
         </div>
-        <div className="w-full h-fit bg-gray-100 flex flex-wrap justify-center items-center">
+        <div className="w-full h-fit bg-gray-100 flex flex-wrap gap-6 justify-center items-center">
           {
             jobList.map((job, index)=>{
               return(
