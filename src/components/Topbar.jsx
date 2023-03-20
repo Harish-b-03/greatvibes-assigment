@@ -1,7 +1,7 @@
 
 const Topbar = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-[60px] px-10 flex justify-between items-center border-b border-solid border-gray-100 bg-white">
+    <div className="fixed top-0 left-0 w-full h-[60px] px-3 md:px-10 flex justify-between items-center border-b border-solid border-gray-100 bg-white z-50">
         <div className="flex">
             <img 
                 src="/images/logo.jpeg" 

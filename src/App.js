@@ -34,7 +34,7 @@ function App() {
     setLoading(true)
 
     axios.get(`${BASE_URL}/jobs`).then((res) => {
-      setJobList(res.data);
+      setJobList(res.data)
       setLoading(false)
     })
 
@@ -43,7 +43,7 @@ function App() {
 
   useEffect(() => {
     setUserData({...data, ...data2})
-    console.log(userData)
+    // console.log(userData)
   }, [data, data2])
 
   const submitForm = async () => {
@@ -51,22 +51,22 @@ function App() {
     setLoading(true);
     const response = await postjob(userData);
     if(response.error === false){
-      if(response.response.status === 201 && response.response.statusText === "created"){
+      if(response.response.status === 201 && response.response.statusText === "Created"){
         alert("Job created");
         const addedData = response.response.data;
-        setJobList(prev => ({...prev, addedData}))
+        setJobList(prev => [...prev, addedData])
       }
     }
     setLoading(false);
     setStepNumber(1);
     setShowFormContainer(false);
-  }
+  }  
 
   return (
     <div className="w-screen h-screen overflow-x-hidden">
       <Topbar/>
       <main className="w-screen h-fit min-h-screen pt-[60px] md:px-20 bg-gray-100">
-        <div className="mt-5">
+        <div className="mt-5 px-3 md:px-0">
           <button onClick={()=>{setStepNumber(1); setShowFormContainer(true)}} className="py-2 px-3 bg-primary text-white text-sm font-semibold flex justify-center items-center rounded-md cursor-pointer hover:bg-blue-600">
             Create Job
           </button>
@@ -75,7 +75,7 @@ function App() {
           {
             jobList.map((job, index)=>{
               return(
-                <JobCard key={index} {...job}/>
+                <JobCard key={index} {...job} setJobList={setJobList} setLoading={setLoading}/>
               )
             })
           }
