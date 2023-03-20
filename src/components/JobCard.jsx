@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { deleteJob } from "../api/deleteJob"
+import EditForm from "./EditForm";
 
 const JobCard = ({
     id,
@@ -12,8 +14,12 @@ const JobCard = ({
     totalEmployees,
     applyType,
     setJobList,
-    setLoading
+    setLoading,
+    jobList,
 }) => {
+
+  const [editMode, setEditMode] = useState(false)
+  const [editData, setEditData] = useState({})
 
   const onDelete = async (id) => {
     setLoading(true);
@@ -28,6 +34,11 @@ const JobCard = ({
     setLoading(false);
   }
 
+  const onEdit = (id) => {
+    const edit_data = jobList.filter(job => job.id === id)[0];
+    setEditMode(true);
+    setEditData(edit_data);
+  }
 
   return (
     <div key={id} className="relative w-[830px] h-[320px] my-3 py-4 px-6 flex bg-white border border-solid border-[#DADEDF] box-border rounded-[10px]">
@@ -86,7 +97,7 @@ const JobCard = ({
         <div className="absolute top-4 right-6 bg-white">
             <div className="w-14 flex justify-between items-center">
                 <svg 
-                    onClick={()=>{}}
+                    onClick={()=>{onEdit(id)}}
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
                     viewBox="0 0 24 24" 
@@ -107,6 +118,12 @@ const JobCard = ({
                 </svg>
             </div>
         </div>
+        {
+            editMode && 
+            <div className="fixed top-[0px] left-0 w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto z-50">
+                <EditForm editData={editData} setEditData={setEditData} setEditMode={setEditMode} setLoading={setLoading} jobList={jobList} setJobList={setJobList}/>
+            </div>
+        }
     </div>
   )
 }

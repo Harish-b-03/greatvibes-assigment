@@ -9,7 +9,7 @@ import { postjob } from "./api/postJob";
 
 function App() {
   const [stepNumber, setStepNumber] = useState(1)
-  const [userData, setUserData] = useState({})
+  const [formData, setFormData] = useState({})
   const [jobList, setJobList] = useState([])
   const [loading, setLoading] = useState(false)
   const [showFormContainer, setShowFormContainer] = useState(false)
@@ -42,14 +42,14 @@ function App() {
   
 
   useEffect(() => {
-    setUserData({...data, ...data2})
+    setFormData({...data, ...data2})
     // console.log(userData)
   }, [data, data2])
 
   const submitForm = async () => {
     
     setLoading(true);
-    const response = await postjob(userData);
+    const response = await postjob(formData);
     if(response.error === false){
       if(response.response.status === 201 && response.response.statusText === "Created"){
         alert("Job created");
@@ -75,21 +75,21 @@ function App() {
           {
             jobList.map((job, index)=>{
               return(
-                <JobCard key={index} {...job} setJobList={setJobList} setLoading={setLoading} setShowFormContainer={setShowFormContainer}/>
+                <JobCard key={index} {...job} setJobList={setJobList} setLoading={setLoading} setShowFormContainer={setShowFormContainer} jobList={jobList}/>
               )
             })
           }
         </div>
       </main>
       { (showFormContainer && stepNumber > 0) &&
-        <div className="fixed top-[0px] w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto z-50">
+        <div className="fixed top-[0px] left-0 w-screen h-[calc(100vh-0px)] flex justify-center items-center bg-[rgba(0,0,0,0.7)] overflow-y-auto z-50">
           {
             (stepNumber === 1) &&
-              <Form1 setStepNumber={setStepNumber} data={data} setData={setData} setShowFormContainer={setShowFormContainer}/>
+              <Form1 setStepNumber={setStepNumber} data={formData} setData={setData} setShowFormContainer={setShowFormContainer}/>
           }
           {
             (stepNumber === 2) &&
-              <Form2 data2={data2} setData2={setData2} submitForm={submitForm}  setShowFormContainer={setShowFormContainer}/>
+              <Form2 data2={formData} setData2={setData2} submitForm={submitForm}  setShowFormContainer={setShowFormContainer}/>
           }
         </div>
       }
