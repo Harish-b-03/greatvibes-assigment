@@ -7,14 +7,11 @@ const InputField = ({
         type="string", 
         required=false,
         error={},
-        titleSize='sm',
-        titleColor='#212121',
-        placeholderSize='sm',
     }) => {
 
     return (
         <div className="relative mt-6 w-full">
-            <div className={`text-${titleSize} font-medium text-[${titleColor}]`}>
+            <div className="text-sm font-medium text-[#212121]">
                 {title} 
                 {
                     required &&
@@ -22,7 +19,7 @@ const InputField = ({
                 }
             </div>
             <input 
-                className={`mt-1 w-full h-9 px-3 py-2 font-normal text-${placeholderSize} outline-1 border border-solid rounded-md placeholder:text-[#7A7A7A] ${(error.valid != null & !error.valid)? 'border-[#D86161]':''}`}
+                className={`mt-1 w-full h-9 px-3 py-2 font-normal text-sm outline-1 border border-solid rounded-md placeholder:text-[#7A7A7A] ${(error.valid != null & !error.valid)? 'border-[#D86161]':''}`}
                 value={value}
                 placeholder={placeholder}
                 required={required}
